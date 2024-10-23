@@ -76,8 +76,30 @@ public class ServiceImplement implements StudentService {
         if (oldStudent.getSurname() != null && !oldStudent.getSurname().isEmpty() && !Objects.equals(oldStudent.getSurname(), student.getSurname())) {
             oldStudent.setSurname(student.getSurname());
         }
-        if (oldStudent.getCourse() != null && !oldStudent.getCourse().isEmpty() && !Objects.equals(oldStudent.getCourse(), student.getCourse())) {
+        if (!Objects.equals(oldStudent.getCourse(), student.getCourse())) {
             oldStudent.setCourse(student.getCourse());
+            switch (student.getCourse()){
+                case "AF":
+                    oldStudent.setCoursePrice(CourseInfo.AF.getPrice());
+                    oldStudent.setDurationOfCourse(CourseInfo.AF.getDurationOfCourse());
+                    break;
+                case "CSF":
+                    oldStudent.setCoursePrice(CourseInfo.CSF.getPrice());
+                    oldStudent.setDurationOfCourse(CourseInfo.CSF.getDurationOfCourse());
+                    break;
+                case "EF":
+                    oldStudent.setCoursePrice(CourseInfo.EF.getPrice());
+                    oldStudent.setDurationOfCourse(CourseInfo.EF.getDurationOfCourse());
+                    break;
+                case "IRF":
+                    oldStudent.setCoursePrice(CourseInfo.IRF.getPrice());
+                    oldStudent.setDurationOfCourse(CourseInfo.IRF.getDurationOfCourse());
+                    break;
+                case "BMF":
+                    oldStudent.setCoursePrice(CourseInfo.BMF.getPrice());
+                    oldStudent.setDurationOfCourse(CourseInfo.BMF.getDurationOfCourse());
+                    break;
+            }
         }
         if (oldStudent.getEmail() != null && !oldStudent.getEmail().isEmpty() && !Objects.equals(oldStudent.getEmail(), student.getEmail())) {
             Optional<Student> studentOptional = studentRepository.findStudentsByEmail(student.getEmail());
